@@ -6,7 +6,13 @@
 
     <groupId>org.example</groupId>
     <artifactId>StudentTaskAdministration</artifactId>
+    <packaging>pom</packaging>
     <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>untitled</module>
+        <module>untitled1</module>
+        <module>untitled2</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>

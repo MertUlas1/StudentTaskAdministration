@@ -1,5 +1,8 @@
 public class Task {
 
+    //add task
+    //show list
+    //remov
     private int id;
     private String name;
     private String description;
@@ -46,5 +49,6 @@ public class Task {
     public void setYear(int year) {
         this.year = year;
     }
+
 
 }
