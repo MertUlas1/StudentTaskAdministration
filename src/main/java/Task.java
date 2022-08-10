@@ -7,9 +7,16 @@ public class Task {
     private String name;
     private String description;
     private String category;
-    private enum rating {easy, middle, hard}
+    private Rating rating;
     private int year;
 
+    public Rating getRating() {
+        return rating;
+    }
+
+    public void setRating(Rating rating) {
+        this.rating = rating;
+    }
     public int getId() {
         return id;
     }
@@ -52,3 +59,5 @@ public class Task {
 
 
 }
+
+

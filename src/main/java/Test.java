@@ -1,19 +1,18 @@
+import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Test {
-
     public static void main(String[] args) {
-
 
         int menuTask = -1;
 
         //solange MenuItem ungleich null ist, also -1 läuft die WhileSchleife
-        while(menuTask !=0) {
+        while (menuTask != 0) {
             menuTask = menu();
 
             //Switch Anweisung
-            switch(menuTask) {
+            switch (menuTask) {
 
                 //Case "1" zeige Liste
                 case 1:
@@ -34,7 +33,7 @@ public class Test {
                 case 0:
                     break;
 
-                    //Default-Wert "Was möchten Sie machen?"
+                //Default-Wert "Was möchten Sie machen?"
                 default:
                     System.out.println("Was möchten Sie machen?: ");
             }
@@ -58,11 +57,8 @@ public class Test {
         System.out.println();
         System.out.print("Was möchten Sie machen?: ");
         choice = keyboard.nextInt();
-
         return choice;
     }
-
-
     //Methode um TaskListe zu zeigen
     public static void showTask() {
 
@@ -74,29 +70,62 @@ public class Test {
         int number = 1;
 
         //"GUI" für "showList"
-        while (input.hasNextLine()){
+        while (input.hasNextLine()) {
             line = input.nextLine();
             System.out.println(number + " ");
             System.out.println(line);
             ++number;
         }
-
         System.out.println();
-
-
     }
 
     //Methode um Task anzulegen
     public static void addTask() {
-
         System.out.println("Füge Task hinzu:");
-
         Scanner input = new Scanner(System.in);
-        System.out.println("Gebe Task ein: ");
-        String item = input.nextLine();
-        System.out.println(item);
+        Task task = new Task();
 
+        if (task.getName() == null) {
+            System.out.println("Gebe Task ein: ");
+            String name = input.nextLine();
+            task.setName(name);
+        }
 
+        if (task.getDescription() == null) {
+            System.out.println("Gebe Task Beschreibung ein: ");
+            String description = input.nextLine();
+            task.setName(description);
+        }
+
+        if (task.getCategory() == null) {
+            System.out.println("Gebe Task Kategeorie ein: ");
+            String category = input.nextLine();
+            task.setCategory(category);
+        }
+
+        if (task.getCategory() == null) {
+            System.out.println("Gebe Task Kategeorie ein: ");
+            String category = input.nextLine();
+            task.setCategory(category);
+        }
+        while (task.getRating()==null){
+            addRating(task, input);
+        }
+
+    }
+
+    public static void addRating (Task task, Scanner input){
+            System.out.println("Gebe Task Rating ein:\n 1:easy \n 2:middle \n 3:hard");
+            String rating = input.nextLine();
+            if (Objects.equals(rating, "1")) {
+                task.setRating(Rating.easy);
+            }
+            if (Objects.equals(rating, "2")) {
+                task.setRating(Rating.middle);
+            }
+            if (Objects.equals(rating, "3")) {
+                task.setRating(Rating.hard);
+            }
     }
 
     //Task löschen
@@ -124,7 +153,7 @@ public class Test {
             ++number;
         }
 
-        for(int i = 0; i < items.size(); i++)
+        for (int i = 0; i < items.size(); i++)
             System.out.println(items.get(i));
 
     }
