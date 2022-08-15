@@ -81,13 +81,19 @@ public class Test {
 
     //Methode um Task anzulegen
     public static void addTask() {
+        //Konsolenausgabe
         System.out.println("Füge Task hinzu:");
+        //User input
         Scanner input = new Scanner(System.in);
+        //Task objekt erstellen
         Task task = new Task();
 
+        //Wenn Name der Task null ist dann
         if (task.getName() == null) {
             System.out.println("Gebe Task ein: ");
+            //gebe Namen ein -> nextLine bis Zeilenende / next bis Leerzeichen
             String name = input.nextLine();
+            //Namen setten
             task.setName(name);
         }
 
@@ -108,12 +114,14 @@ public class Test {
             String category = input.nextLine();
             task.setCategory(category);
         }
+        //Solange task  kein Rating hat, addRating
         while (task.getRating()==null){
             addRating(task, input);
         }
 
     }
 
+    //Methode um Rating zu setzen - Enum
     public static void addRating (Task task, Scanner input){
             System.out.println("Gebe Task Rating ein:\n 1:easy \n 2:middle \n 3:hard");
             String rating = input.nextLine();
@@ -131,16 +139,18 @@ public class Test {
     //Task löschen
     public static void removeTask() {
 
+        //Task anzeigen
         int choice;
         showTask();
 
         Scanner input = new Scanner(System.in);
         System.out.println("Was möchtest du löschen?");
+        //Eingabe zum löschen einer Task
         choice = input.nextInt();
 
+        //neue Liste erstellt, um "gelöschte Task" in der neuen Liste auszugrenzen
         ArrayList<String> items = new ArrayList<>();
         int number = 1;
-
         Scanner input2 = new Scanner(System.in);
         String item;
 
@@ -153,6 +163,7 @@ public class Test {
             ++number;
         }
 
+        //auslesen
         for (int i = 0; i < items.size(); i++)
             System.out.println(items.get(i));
 
