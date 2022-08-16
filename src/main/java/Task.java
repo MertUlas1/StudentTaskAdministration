@@ -10,6 +10,18 @@ public class Task {
     private Rating rating;
     private int year;
 
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", category='" + category + '\'' +
+                ", rating=" + rating +
+                ", year=" + year +
+                '}';
+    }
+
     public Rating getRating() {
         return rating;
     }

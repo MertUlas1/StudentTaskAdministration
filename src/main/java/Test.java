@@ -1,8 +1,14 @@
+import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+//Neue Aufgabe -> angelegte Task ausgeben und löschen
 public class Test {
+
+     static ArrayList<Task> taskData = new ArrayList<>();
+
+
     public static void main(String[] args) {
 
         int menuTask = -1;
@@ -62,21 +68,10 @@ public class Test {
     //Methode um TaskListe zu zeigen
     public static void showTask() {
 
-        System.out.println("To-Do List");
-
-        //User Input
-        Scanner input = new Scanner(System.in);
-        String line;
-        int number = 1;
-
-        //"GUI" für "showList"
-        while (input.hasNextLine()) {
-            line = input.nextLine();
-            System.out.println(number + " ");
-            System.out.println(line);
-            ++number;
+        //Auslesen der taskData Liste
+        for (Task task : taskData) {
+            System.out.println(task);
         }
-        System.out.println();
     }
 
     //Methode um Task anzulegen
@@ -100,7 +95,7 @@ public class Test {
         if (task.getDescription() == null) {
             System.out.println("Gebe Task Beschreibung ein: ");
             String description = input.nextLine();
-            task.setName(description);
+            task.setDescription(description);
         }
 
         if (task.getCategory() == null) {
@@ -118,7 +113,7 @@ public class Test {
         while (task.getRating()==null){
             addRating(task, input);
         }
-
+        taskData.add(task);
     }
 
     //Methode um Rating zu setzen - Enum
