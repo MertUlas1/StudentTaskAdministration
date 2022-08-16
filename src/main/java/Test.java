@@ -6,7 +6,9 @@ import java.util.ArrayList;
 //Neue Aufgabe -> angelegte Task ausgeben und löschen
 public class Test {
 
-     static ArrayList<Task> taskData = new ArrayList<>();
+    static ArrayList<Task> taskData = new ArrayList<>();
+    static int taskDataId;
+
 
 
     public static void main(String[] args) {
@@ -35,7 +37,7 @@ public class Test {
                     removeTask();
                     break;
 
-                //Case "0" lösche Task
+                //Case "0"
                 case 0:
                     break;
 
@@ -65,9 +67,9 @@ public class Test {
         choice = keyboard.nextInt();
         return choice;
     }
+
     //Methode um TaskListe zu zeigen
     public static void showTask() {
-
         //Auslesen der taskData Liste
         for (Task task : taskData) {
             System.out.println(task);
@@ -83,6 +85,13 @@ public class Test {
         //Task objekt erstellen
         Task task = new Task();
 
+        if (task.getId() == 0) {
+            System.out.println("Gebe ID ein: ");
+            //gebe ID ein
+            int id = input.nextInt();
+            //Namen setten
+            task.setId(id);
+        }
         //Wenn Name der Task null ist dann
         if (task.getName() == null) {
             System.out.println("Gebe Task ein: ");
@@ -114,6 +123,7 @@ public class Test {
             addRating(task, input);
         }
         taskData.add(task);
+
     }
 
     //Methode um Rating zu setzen - Enum
@@ -143,6 +153,14 @@ public class Test {
         //Eingabe zum löschen einer Task
         choice = input.nextInt();
 
+        Task selectedTask = null;
+        for (Task task : taskData){
+            if (task.getId() == choice){
+                selectedTask=task;
+            }
+
+        }
+
         //neue Liste erstellt, um "gelöschte Task" in der neuen Liste auszugrenzen
         ArrayList<String> items = new ArrayList<>();
         int number = 1;
@@ -158,9 +176,16 @@ public class Test {
             ++number;
         }
 
+        if(selectedTask != null ){
+            taskData.remove(selectedTask);
+        }
+
         //auslesen
-        for (int i = 0; i < items.size(); i++)
-            System.out.println(items.get(i));
+        for (Task s : taskData) System.out.println(s);
+
+        if (taskData.isEmpty()){
+            System.out.println("Es wurde keine Task gefunden");
+        }
 
     }
 }
