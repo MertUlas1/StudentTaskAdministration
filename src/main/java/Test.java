@@ -3,7 +3,6 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
 
-//Neue Aufgabe -> angelegte Task ausgeben und löschen
 public class Test {
 
     static ArrayList<Task> taskData = new ArrayList<>();
@@ -85,6 +84,7 @@ public class Test {
         //Task objekt erstellen
         Task task = new Task();
 
+        //id angelegt in der Konsole
         if (task.getId() == 0) {
             System.out.println("Gebe ID ein: ");
             //gebe ID ein
@@ -93,6 +93,7 @@ public class Test {
             task.setId(id);
         }
         //Wenn Name der Task null ist dann
+        //schau ich mir nochmal
         if (task.getName() == null) {
             System.out.println("Gebe Task ein: ");
             //gebe Namen ein -> nextLine bis Zeilenende / next bis Leerzeichen
@@ -113,15 +114,11 @@ public class Test {
             task.setCategory(category);
         }
 
-        if (task.getCategory() == null) {
-            System.out.println("Gebe Task Kategeorie ein: ");
-            String category = input.nextLine();
-            task.setCategory(category);
-        }
         //Solange task  kein Rating hat, addRating
         while (task.getRating()==null){
             addRating(task, input);
         }
+        //Eingaben werden der Liste taskData zugewiesen
         taskData.add(task);
 
     }
@@ -161,30 +158,16 @@ public class Test {
 
         }
 
-        //neue Liste erstellt, um "gelöschte Task" in der neuen Liste auszugrenzen
-        ArrayList<String> items = new ArrayList<>();
-        int number = 1;
-        Scanner input2 = new Scanner(System.in);
-        String item;
-
-        while (input2.hasNextLine()) {
-            item = input2.nextLine();
-
-            if (number != choice)
-                items.add(item);
-
-            ++number;
-        }
-
+        //z.B. Task mit ID 4
         if(selectedTask != null ){
             taskData.remove(selectedTask);
         }
 
+        //zweite Task
         //auslesen
-        for (Task s : taskData) System.out.println(s);
 
         if (taskData.isEmpty()){
-            System.out.println("Es wurde keine Task gefunden");
+            System.out.println("Erfolgreich gelöscht");
         }
 
     }
