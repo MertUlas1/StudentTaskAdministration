@@ -1,5 +1,7 @@
 public class Task {
 
+
+
     //add task
     //show list
     //remov
@@ -21,6 +23,13 @@ public class Task {
                 ", year=" + year +
                 '}';
     }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
     public Rating getRating() {
         return rating;
@@ -29,13 +38,7 @@ public class Task {
     public void setRating(Rating rating) {
         this.rating = rating;
     }
-    public int getId() {
-        return id;
-    }
 
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getName() {
         return name;

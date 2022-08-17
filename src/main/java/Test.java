@@ -84,11 +84,13 @@ public class Test {
         //Task objekt erstellen
         Task task = new Task();
 
+        //Wrapper Type -> damit ID null sein kann
         //id angelegt in der Konsole
         if (task.getId() == 0) {
             System.out.println("Gebe ID ein: ");
             //gebe ID ein
             int id = input.nextInt();
+            input.nextLine();
             //Namen setten
             task.setId(id);
         }
@@ -155,7 +157,6 @@ public class Test {
             if (task.getId() == choice){
                 selectedTask=task;
             }
-
         }
 
         //z.B. Task mit ID 4
