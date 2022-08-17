@@ -58,9 +58,22 @@ public class Test {
         System.out.println("Menü");
         System.out.println();
         System.out.println("0. Verlassse das Programm");
-        System.out.println("1. Zeige die Aufgabenliste");
+
+        if (taskData.isEmpty()){
+            System.out.println("1. Füge erst eine Task hinzu, um sie zu sehen");
+        }
+        else {
+            System.out.println("1. Zeige die Aufgabenliste");
+        }
+
         System.out.println("2. Füge eine Task hinzu");
-        System.out.println("3. Lösche eine Task von der Liste");
+        if (taskData.isEmpty()){
+            System.out.println("3. Füge erst eine Task hinzu, um sie zu löschen");
+        }
+        else {
+            System.out.println("3. Lösche eine Task von der Liste");
+        }
+
         System.out.println();
         System.out.print("Was möchten Sie machen?: ");
         choice = keyboard.nextInt();
@@ -126,7 +139,6 @@ public class Test {
         }
         //Eingaben werden der Liste taskData zugewiesen
         taskData.add(task);
-
     }
 
     //Methode um Rating zu setzen - Enum
@@ -161,16 +173,14 @@ public class Test {
             if (task.getId() == choice){
                 selectedTask=task;
             }
+            else {
+                System.out.println("Die ID existiert nicht");
+            }
         }
-
         //z.B. Task mit ID 4
         if(selectedTask != null ){
             taskData.remove(selectedTask);
+            System.out.println("Die Task wurde erfolgreich gelöscht");
         }
-
-        if (selectedTask == null){
-            System.out.println("Erfolgreich gelöscht");
-        }
-
     }
 }
