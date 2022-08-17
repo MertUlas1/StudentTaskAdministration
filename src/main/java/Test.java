@@ -73,6 +73,10 @@ public class Test {
         for (Task task : taskData) {
             System.out.println(task);
         }
+
+        if (taskData.isEmpty()){
+            System.out.println("Keine Task vorhanden");
+        }
     }
 
     //Methode um Task anzulegen
@@ -164,10 +168,7 @@ public class Test {
             taskData.remove(selectedTask);
         }
 
-        //zweite Task
-        //auslesen
-
-        if (taskData.isEmpty()){
+        if (selectedTask == null){
             System.out.println("Erfolgreich gelöscht");
         }
 
