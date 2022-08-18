@@ -1,17 +1,14 @@
-import java.util.List;
+import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
-import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-
-
-public class Test {
+public class TestInt {
     //umsortieren und ausgeblenete Menüpunkte Zugriff verrweigern
     static ArrayList<Task> taskData = new ArrayList<>();
     static int taskDataId;
     //atomarische Generierung der ID, neues Objekt wird generiert und hochgezählt -> initialer Wert 0
-    private static final AtomicInteger count = new AtomicInteger(0);
+    private static int count = 0;
 
     public static void main(String[] args) {
 
@@ -110,7 +107,7 @@ public class Test {
         if (task.getId() == 0) {
             //int id = (int) (Math.random()*1000); -> diese Option hätte zu Duplikaten der IDs geführt
             //ID wird generiert
-            int id = count.incrementAndGet();
+            int id = count++;
             //ID wird gesetzt
             task.setId(id);
         }
