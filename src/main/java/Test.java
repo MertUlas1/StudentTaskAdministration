@@ -5,7 +5,6 @@ import java.util.ArrayList;
 
 public class Test {
     //umsortieren und ausgeblenete Menüpunkte Zugriff verrweigern
-
     static ArrayList<Task> taskData = new ArrayList<>();
     static int taskDataId;
 
@@ -26,12 +25,21 @@ public class Test {
                     break;
 
                 //Case "2" füge Task hinzu
+
                 case 2:
+                    if (taskData.isEmpty()){
+                        System.out.println("Die ist Funktion ist nicht vefügbar, gebe einen gültigen Wert ein");
+                        break;
+                    }
                     showTask();
                     break;
 
                 //Case "3" lösche Task
                 case 3:
+                    if (taskData.isEmpty()){
+                        System.out.println("Die ist Funktion ist nicht vefügbar, gebe einen gültigen Wert ein");
+                        break;
+                    }
                     removeTask();
                     break;
 
@@ -41,24 +49,24 @@ public class Test {
 
                 //Default-Wert "Was möchten Sie machen?"
                 default:
-                    System.out.println("Was möchten Sie machen?: ");
+                    if (taskData.isEmpty()){
+                        System.out.println("Bitte gebe einen gültigen Wert ein");
+                        break;
+                    }
             }
-
         }
     }
 
     public static int menu() {
-
         int choice;
-
         //Scanner -> User Input
         Scanner keyboard = new Scanner(System.in);
         //Ausgabe in Konsole
         System.out.println("Menü");
         System.out.println();
         System.out.println("0. Verlassse das Programm");
-
         System.out.println("1. Füge eine Task hinzu");
+
         if (!taskData.isEmpty()){
             System.out.println("2. Zeige die Aufgabenliste");
         }
@@ -66,7 +74,6 @@ public class Test {
         if (!taskData.isEmpty()){
             System.out.println("3. Lösche eine Task von der Liste");
         }
-
 
         System.out.println();
         System.out.print("Was möchten Sie machen?: ");
