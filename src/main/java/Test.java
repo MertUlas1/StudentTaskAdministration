@@ -4,11 +4,10 @@ import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Test {
+    //umsortieren und ausgeblenete Menüpunkte Zugriff verrweigern
 
     static ArrayList<Task> taskData = new ArrayList<>();
     static int taskDataId;
-
-
 
     public static void main(String[] args) {
 
@@ -23,12 +22,12 @@ public class Test {
 
                 //Case "1" zeige Liste
                 case 1:
-                    showTask();
+                    addTask();
                     break;
 
                 //Case "2" füge Task hinzu
                 case 2:
-                    addTask();
+                    showTask();
                     break;
 
                 //Case "3" lösche Task
@@ -59,20 +58,15 @@ public class Test {
         System.out.println();
         System.out.println("0. Verlassse das Programm");
 
-        if (taskData.isEmpty()){
-            System.out.println("1. Füge erst eine Task hinzu, um sie zu sehen");
-        }
-        else {
-            System.out.println("1. Zeige die Aufgabenliste");
+        System.out.println("1. Füge eine Task hinzu");
+        if (!taskData.isEmpty()){
+            System.out.println("2. Zeige die Aufgabenliste");
         }
 
-        System.out.println("2. Füge eine Task hinzu");
-        if (taskData.isEmpty()){
-            System.out.println("3. Füge erst eine Task hinzu, um sie zu löschen");
-        }
-        else {
+        if (!taskData.isEmpty()){
             System.out.println("3. Lösche eine Task von der Liste");
         }
+
 
         System.out.println();
         System.out.print("Was möchten Sie machen?: ");
@@ -86,7 +80,6 @@ public class Test {
         for (Task task : taskData) {
             System.out.println(task);
         }
-
         if (taskData.isEmpty()){
             System.out.println("Keine Task vorhanden");
         }
@@ -101,7 +94,6 @@ public class Test {
         //Task objekt erstellen
         Task task = new Task();
 
-        //Wrapper Type -> damit ID null sein kann
         //id angelegt in der Konsole
         if (task.getId() == 0) {
             System.out.println("Gebe ID ein: ");
@@ -164,7 +156,7 @@ public class Test {
         showTask();
 
         Scanner input = new Scanner(System.in);
-        System.out.println("Was möchtest du löschen?");
+        System.out.println("Was möchtest du löschen? (Gebe bitte die ID ein)");
         //Eingabe zum löschen einer Task
         choice = input.nextInt();
 
