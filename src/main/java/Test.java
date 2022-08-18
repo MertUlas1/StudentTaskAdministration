@@ -2,11 +2,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Test {
     //umsortieren und ausgeblenete Menüpunkte Zugriff verrweigern
     static ArrayList<Task> taskData = new ArrayList<>();
     static int taskDataId;
+    //atomarische Generierung der ID, neues Objekt wird generiert und hochgezählt -> initialer Wert 0
+    private static final AtomicInteger count = new AtomicInteger(0);
 
     public static void main(String[] args) {
 
@@ -28,7 +31,7 @@ public class Test {
 
                 case 2:
                     if (taskData.isEmpty()){
-                        System.out.println("Die ist Funktion ist nicht vefügbar, gebe einen gültigen Wert ein");
+                        System.out.println("Die ist Funktion ist nicht vefügbar");
                         break;
                     }
                     showTask();
@@ -103,11 +106,10 @@ public class Test {
 
         //id angelegt in der Konsole
         if (task.getId() == 0) {
-            System.out.println("Gebe ID ein: ");
-            //gebe ID ein
-            int id = input.nextInt();
-            input.nextLine();
-            //Namen setten
+            //int id = (int) (Math.random()*1000); -> diese Option hätte zu Duplikaten der IDs geführt
+            //ID wird generiert
+            int id = count.incrementAndGet();
+            //ID wird gesetzt
             task.setId(id);
         }
         //Wenn Name der Task null ist dann
@@ -173,7 +175,7 @@ public class Test {
                 selectedTask=task;
             }
             else {
-                System.out.println("Die ID existiert nicht");
+                System.out.println("Die ID existiert nicht mehr");
             }
         }
         //z.B. Task mit ID 4
