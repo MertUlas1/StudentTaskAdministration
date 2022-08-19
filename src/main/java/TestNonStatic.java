@@ -4,6 +4,15 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
+//1. AtomicInteger vs int
+//- AtomicInteger zählt ID atomar hoch, nutzbar für Multi-Theards
+//- Erhöhung des Zähler „count++“ in Java nicht Threadsicher -> kann zu Problemen innerhalb der verschiednen Threads führen oder zu Performanceproblemen - deshalb stellt AtomicInteger auf die direkt von mehreren Threads zugegriffen werden kann
+//In meinem Fall hätte das Hochzählen mit „count++“ vorerst zu keinen Probleme geführt, aber der Performance wegen habe ich das AtomicInteger genutzt, um Synchronisierungsprozesse mit dem „count++“ zu vermeiden. Die Version mit dem normalen primitiven Int ist übrigens in Git gepusht.
+//2. Static
+//- objektunabhängig von Klassen, keine Instanzzierung notwendig
+//- zu nutzen, wenn man keine Objekte erzeugen möchte
+
+
 public class TestNonStatic {
     private final List<Task> taskData = new ArrayList<>();
     //atomarische Generierung der ID, neues Objekt wird generiert und hochgezählt -> initialer Wert 0
