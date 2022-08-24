@@ -1,10 +1,5 @@
 public class Task {
-
-
-
-    //add task
-    //show list
-    //remov
+    //Attribute der Task
     private int id;
     private String name;
     private String description;
@@ -12,6 +7,7 @@ public class Task {
     private Rating rating;
     private int year;
 
+    //toString Methode für die Ausgabe
     @Override
     public String toString() {
         return "Task{" +
@@ -23,6 +19,8 @@ public class Task {
                 ", year=" + year +
                 '}';
     }
+
+    //Getter und Setter für die Task Klasse
     public int getId() {
         return id;
     }
@@ -38,7 +36,6 @@ public class Task {
     public void setRating(Rating rating) {
         this.rating = rating;
     }
-
 
     public String getName() {
         return name;
@@ -71,8 +68,6 @@ public class Task {
     public void setYear(int year) {
         this.year = year;
     }
-
-
 }
 
 

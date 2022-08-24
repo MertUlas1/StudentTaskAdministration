@@ -1,8 +1,7 @@
 public class TaskMain {
 
     public static void main(String[] args) {
-        //runNonStatic();
-        //Test.removeTask();
+        //Ausgabe der nicht statischen Klasse
         TestNonStatic testNonStatic = new TestNonStatic();
         testNonStatic.run();
     }

@@ -5,35 +5,27 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-
 public class Test {
-    //umsortieren und ausgeblenete Menüpunkte Zugriff verrweigern
-    static ArrayList<Task> taskData = new ArrayList<>();
-    static int taskDataId;
+    //Liste für die Task
+    static List<Task> taskData = new ArrayList<>();
     //atomarische Generierung der ID, neues Objekt wird generiert und hochgezählt -> initialer Wert 0
     private static final AtomicInteger count = new AtomicInteger(0);
 
     public static void run() {
-
-
         int menuTask = -1;
-
         //solange MenuItem ungleich null ist, also -1 läuft die WhileSchleife
         while (menuTask != 0) {
             menuTask = menu();
 
             //Switch Anweisung
             switch (menuTask) {
-
-                //Case "1" zeige Liste
+                //Case "1" add Task
                 case 1:
                     addTask();
                     break;
-
-                //Case "2" füge Task hinzu
-
+                //Case "2" show Task
                 case 2:
-                    if (taskData.isEmpty()){
+                    if (taskData.isEmpty()) {
                         System.out.println("Die ist Funktion ist nicht vefügbar");
                         break;
                     }
@@ -42,20 +34,18 @@ public class Test {
 
                 //Case "3" lösche Task
                 case 3:
-                    if (taskData.isEmpty()){
+                    if (taskData.isEmpty()) {
                         System.out.println("Die ist Funktion ist nicht vefügbar, gebe einen gültigen Wert ein");
                         break;
                     }
                     removeTask();
                     break;
-
                 //Case "0"
                 case 0:
                     break;
-
                 //Default-Wert "Was möchten Sie machen?"
                 default:
-                    if (taskData.isEmpty()){
+                    if (taskData.isEmpty()) {
                         System.out.println("Bitte gebe einen gültigen Wert ein");
                         break;
                     }
@@ -63,6 +53,7 @@ public class Test {
         }
     }
 
+    //Menü
     public static int menu() {
         int choice;
         //Scanner -> User Input
@@ -73,15 +64,17 @@ public class Test {
         System.out.println("0. Verlassse das Programm");
         System.out.println("1. Füge eine Task hinzu");
 
-        if (!taskData.isEmpty()){
+        //Wenn es Task gibt
+        if (!taskData.isEmpty()) {
+            //Ausgabe
             System.out.println("2. Zeige die Aufgabenliste");
         }
-
-        if (!taskData.isEmpty()){
-            System.out.println("3. Lösche eine Task von der Liste");
+        //Wenn es Task gibt
+        if (!taskData.isEmpty()) {
+            //Ausgabe
+            System.out.println("3. Lösche eine Task von der Liste\n");
         }
-
-        System.out.println();
+        //Ausgabe
         System.out.print("Was möchten Sie machen?: ");
         choice = keyboard.nextInt();
         return choice;
@@ -93,7 +86,7 @@ public class Test {
         for (Task task : taskData) {
             System.out.println(task);
         }
-        if (taskData.isEmpty()){
+        if (taskData.isEmpty()) {
             System.out.println("Keine Task vorhanden");
         }
     }
@@ -109,7 +102,6 @@ public class Test {
 
         //id angelegt in der Konsole
         if (task.getId() == 0) {
-            //int id = (int) (Math.random()*1000); -> diese Option hätte zu Duplikaten der IDs geführt
             //ID wird generiert
             int id = count.incrementAndGet();
             //ID wird gesetzt
@@ -138,7 +130,7 @@ public class Test {
         }
 
         //Solange task  kein Rating hat, addRating
-        while (task.getRating()==null){
+        while (task.getRating() == null) {
             addRating(task, input);
         }
         //Eingaben werden der Liste taskData zugewiesen
@@ -146,18 +138,18 @@ public class Test {
     }
 
     //Methode um Rating zu setzen - Enum
-    public static void addRating (Task task, Scanner input){
-            System.out.println("Gebe Task Rating ein:\n 1:easy \n 2:middle \n 3:hard");
-            String rating = input.nextLine();
-            if (Objects.equals(rating, "1")) {
-                task.setRating(Rating.easy);
-            }
-            if (Objects.equals(rating, "2")) {
-                task.setRating(Rating.middle);
-            }
-            if (Objects.equals(rating, "3")) {
-                task.setRating(Rating.hard);
-            }
+    public static void addRating(Task task, Scanner input) {
+        System.out.println("Gebe Task Rating ein:\n 1:easy \n 2:middle \n 3:hard");
+        String rating = input.nextLine();
+        if (Objects.equals(rating, "1")) {
+            task.setRating(Rating.easy);
+        }
+        if (Objects.equals(rating, "2")) {
+            task.setRating(Rating.middle);
+        }
+        if (Objects.equals(rating, "3")) {
+            task.setRating(Rating.hard);
+        }
     }
 
     //Task löschen
@@ -166,23 +158,22 @@ public class Test {
         //Task anzeigen
         int choice;
         showTask();
-
+        //Scanner Objekt erzeugen
         Scanner input = new Scanner(System.in);
         System.out.println("Was möchtest du löschen? (Gebe bitte die ID ein)");
         //Eingabe zum löschen einer Task
         choice = input.nextInt();
 
         Task selectedTask = null;
-        for (Task task : taskData){
-            if (task.getId() == choice){
-                selectedTask=task;
-            }
-            else {
+        for (Task task : taskData) {
+            if (task.getId() == choice) {
+                selectedTask = task;
+            } else {
                 System.out.println("Die ID existiert nicht mehr");
             }
         }
-        //z.B. Task mit ID 4
-        if(selectedTask != null ){
+
+        if (selectedTask != null) {
             taskData.remove(selectedTask);
             System.out.println("Die Task wurde erfolgreich gelöscht");
         }
