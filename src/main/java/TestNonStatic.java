@@ -4,17 +4,9 @@ import java.util.Objects;
 import java.util.Scanner;
 import java.util.concurrent.atomic.AtomicInteger;
 
-//1. AtomicInteger vs int
-//- AtomicInteger zählt ID atomar hoch, nutzbar für Multi-Theards
-//- Erhöhung des Zähler „count++“ in Java nicht Threadsicher -> kann zu Problemen innerhalb der verschiednen Threads führen oder zu Performanceproblemen - deshalb stellt AtomicInteger auf die direkt von mehreren Threads zugegriffen werden kann
-//In meinem Fall hätte das Hochzählen mit „count++“ vorerst zu keinen Probleme geführt, aber der Performance wegen habe ich das AtomicInteger genutzt, um Synchronisierungsprozesse mit dem „count++“ zu vermeiden. Die Version mit dem normalen primitiven Int ist übrigens in Git gepusht.
-//2. Static
-//- objektunabhängig von Klassen, keine Instanzzierung notwendig
-//- zu nutzen, wenn man keine Objekte erzeugen möchte
-
-
 public class TestNonStatic {
-    private final List<Task> taskData = new ArrayList<>();
+    //Liste taskData wird erzeugt
+    private static final List<Task> taskData = new ArrayList<>();
     //atomarische Generierung der ID, neues Objekt wird generiert und hochgezählt -> initialer Wert 0
     private final AtomicInteger count = new AtomicInteger(0);
 
@@ -31,7 +23,7 @@ public class TestNonStatic {
                 case 1:
                     addTask();
                     break;
-                //Case "2" füge Task hinzu
+                //Case "2" zeige showTask, wenn eine vorhanden ist
                 case 2:
                     if (hasTask()) {
                         showTask();
@@ -68,7 +60,10 @@ public class TestNonStatic {
         System.out.println("0. Verlassse das Programm");
         System.out.println("1. Füge eine Task hinzu");
 
+        //IF-Statements um Ausgaben in der Konsole zu managen
+        //wenn es eine Task gibt..
         if (hasTask()) {
+            //.. dann gebe aus
             System.out.println("2. Zeige die Aufgabenliste");
         }
 
@@ -79,7 +74,12 @@ public class TestNonStatic {
         return keyboard.nextInt();
 
     }
+    public static List<Task> getAllTasks(){
+        return TestInt.taskData;
+    }
 
+
+    //Methode zum checken ob es eine Task gibt
     private boolean hasTask() {
         return !taskData.isEmpty();
     }
@@ -170,7 +170,9 @@ public class TestNonStatic {
         //Eingabe zum löschen einer Task
         choice = input.nextInt();
 
+        //Task löschen
         Task selectedTask = null;
+        //Task auslesen zum löschen
         for (Task task : taskData) {
             if (task.getId() == choice) {
                 selectedTask = task;
@@ -178,7 +180,7 @@ public class TestNonStatic {
                 System.out.println("Die ID existiert nicht mehr");
             }
         }
-        //z.B. Task mit ID 4
+        //Task wird aus der Liste gelöscht
         if (selectedTask != null) {
             taskData.remove(selectedTask);
             System.out.println("Die Task wurde erfolgreich gelöscht");
