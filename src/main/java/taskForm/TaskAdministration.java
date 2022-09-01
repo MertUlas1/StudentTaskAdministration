@@ -1,3 +1,6 @@
+package taskForm;
+import model.Rating;
+import model.Task;
 import java.util.List;
 import java.util.Objects;
 import java.util.Scanner;
@@ -5,8 +8,8 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 
-public class Test {
-    //Liste für die Task
+public class TaskAdministration {
+    //Liste für die app.Task
     static List<Task> taskData = new ArrayList<>();
     //atomarische Generierung der ID, neues Objekt wird generiert und hochgezählt -> initialer Wert 0
     private static final AtomicInteger count = new AtomicInteger(0);
@@ -19,11 +22,11 @@ public class Test {
 
             //Switch Anweisung
             switch (menuTask) {
-                //Case "1" add Task
+                //Case "1" add app.Task
                 case 1:
                     addTask();
                     break;
-                //Case "2" show Task
+                //Case "2" show app.Task
                 case 2:
                     if (taskData.isEmpty()) {
                         System.out.println("Die ist Funktion ist nicht vefügbar");
@@ -32,7 +35,7 @@ public class Test {
                     showTask();
                     break;
 
-                //Case "3" lösche Task
+                //Case "3" lösche app.Task
                 case 3:
                     if (taskData.isEmpty()) {
                         System.out.println("Die ist Funktion ist nicht vefügbar, gebe einen gültigen Wert ein");
@@ -62,17 +65,17 @@ public class Test {
         System.out.println("Menü");
         System.out.println();
         System.out.println("0. Verlassse das Programm");
-        System.out.println("1. Füge eine Task hinzu");
+        System.out.println("1. Füge eine app.Task hinzu");
 
-        //Wenn es Task gibt
+        //Wenn es app.Task gibt
         if (!taskData.isEmpty()) {
             //Ausgabe
             System.out.println("2. Zeige die Aufgabenliste");
         }
-        //Wenn es Task gibt
+        //Wenn es app.Task gibt
         if (!taskData.isEmpty()) {
             //Ausgabe
-            System.out.println("3. Lösche eine Task von der Liste\n");
+            System.out.println("3. Lösche eine app.Task von der Liste\n");
         }
         //Ausgabe
         System.out.print("Was möchten Sie machen?: ");
@@ -87,17 +90,17 @@ public class Test {
             System.out.println(task);
         }
         if (taskData.isEmpty()) {
-            System.out.println("Keine Task vorhanden");
+            System.out.println("Keine app.Task vorhanden");
         }
     }
 
-    //Methode um Task anzulegen
+    //Methode um app.Task anzulegen
     public static void addTask() {
         //Konsolenausgabe
-        System.out.println("Füge Task hinzu:");
+        System.out.println("Füge app.Task hinzu:");
         //User input
         Scanner input = new Scanner(System.in);
-        //Task objekt erstellen
+        //app.Task objekt erstellen
         Task task = new Task();
 
         //id angelegt in der Konsole
@@ -107,10 +110,10 @@ public class Test {
             //ID wird gesetzt
             task.setId(id);
         }
-        //Wenn Name der Task null ist dann
+        //Wenn Name der app.Task null ist dann
         //schau ich mir nochmal
         if (task.getName() == null) {
-            System.out.println("Gebe Task ein: ");
+            System.out.println("Gebe app.Task ein: ");
             //gebe Namen ein -> nextLine bis Zeilenende / next bis Leerzeichen
             String name = input.nextLine();
             //Namen setten
@@ -118,18 +121,18 @@ public class Test {
         }
 
         if (task.getDescription() == null) {
-            System.out.println("Gebe Task Beschreibung ein: ");
+            System.out.println("Gebe app.Task Beschreibung ein: ");
             String description = input.nextLine();
             task.setDescription(description);
         }
 
         if (task.getCategory() == null) {
-            System.out.println("Gebe Task Kategeorie ein: ");
+            System.out.println("Gebe app.Task Kategeorie ein: ");
             String category = input.nextLine();
             task.setCategory(category);
         }
 
-        //Solange task  kein Rating hat, addRating
+        //Solange task  kein app.Rating hat, addRating
         while (task.getRating() == null) {
             addRating(task, input);
         }
@@ -137,9 +140,9 @@ public class Test {
         taskData.add(task);
     }
 
-    //Methode um Rating zu setzen - Enum
+    //Methode um app.Rating zu setzen - Enum
     public static void addRating(Task task, Scanner input) {
-        System.out.println("Gebe Task Rating ein:\n 1:easy \n 2:middle \n 3:hard");
+        System.out.println("Gebe app.Task app.Rating ein:\n 1:easy \n 2:middle \n 3:hard");
         String rating = input.nextLine();
         if (Objects.equals(rating, "1")) {
             task.setRating(Rating.easy);
@@ -152,30 +155,35 @@ public class Test {
         }
     }
 
-    //Task löschen
+    //app.Task löschen
     public static void removeTask() {
 
-        //Task anzeigen
+        //app.Task anzeigen
         int choice;
         showTask();
         //Scanner Objekt erzeugen
         Scanner input = new Scanner(System.in);
         System.out.println("Was möchtest du löschen? (Gebe bitte die ID ein)");
-        //Eingabe zum löschen einer Task
+        //Eingabe zum löschen einer app.Task
         choice = input.nextInt();
 
+        //wenn keine Task ausgewählt
         Task selectedTask = null;
+        //dann suche nach Task
         for (Task task : taskData) {
+            //anhand der ID
             if (task.getId() == choice) {
                 selectedTask = task;
             } else {
                 System.out.println("Die ID existiert nicht mehr");
             }
         }
-
+        //Wenn Task gefunden
         if (selectedTask != null) {
+            //dann lösche Task
             taskData.remove(selectedTask);
-            System.out.println("Die Task wurde erfolgreich gelöscht");
+            //und gebe aus
+            System.out.println("Die app.Task wurde erfolgreich gelöscht");
         }
     }
 }

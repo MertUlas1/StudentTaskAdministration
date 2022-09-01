@@ -1,5 +1,7 @@
+package model;
+
 public class Task {
-    //Attribute der Task
+    //Attribute der app.Task
     private int id;
     private String name;
     private String description;
@@ -7,10 +9,30 @@ public class Task {
     private Rating rating;
     private int year;
 
+
+
+    public boolean validate()  {
+        //n
+        if (name == null || name.isEmpty()) {
+            return false;
+        }
+
+        if (description == null || description.isEmpty()) {
+            return false;
+        }
+
+        if (category == null || category.isEmpty()) {
+            return false;
+        }
+
+
+        return rating != null;
+    }
+
     //toString Methode für die Ausgabe
     @Override
     public String toString() {
-        return "Task{" +
+        return "app.Task{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
@@ -20,7 +42,7 @@ public class Task {
                 '}';
     }
 
-    //Getter und Setter für die Task Klasse
+    //Getter und Setter für die app.Task Klasse
     public int getId() {
         return id;
     }
